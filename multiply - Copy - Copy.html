@@ -1,0 +1,316 @@
+<!-- This isn't even a game and it's probably my biggest project
+	I don't care if you look at the code either
+	It's not that hard to make :)
+	I mean it took a very long time
+	yeah it's hard to make but still code is available if you want it -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		.text {
+			font-size:32px;
+		}
+		body {
+			font-family: monospace;
+			background-color: rgb(0, 0, 16);
+			color: lime;
+		}
+		.mainBtn {
+			width: 128px;
+		}
+		.yellowBtn {
+			color: yellow;
+			border-color: rgb(128, 128, 0);
+			background-color: rgb(96, 96, 0);
+		}
+		.redBtn {
+			color: red;
+			border-color: darkred;
+			background: rgb(72, 0, 0);
+		}
+		.blueBtn {
+			color: rgb(112, 112, 255);
+			border-color: blue;
+			background-color: darkblue;
+		}
+		.greenBtn {
+			color: #00c000;
+			border-color: green;
+			background-color: darkgreen;
+		}
+		::-webkit-input-placeholder {
+			text-align: center;
+		}
+	</style>
+	<title id="number2">Big^^Number</title>
+</head>
+<body>
+
+	<div id="main">
+		<h2>Singular</h2>
+		<button onclick="fixStorage(); location.reload()" class="redBtn">Reset</button>
+		<button onclick="pause();" class="redBtn" title="Pauses/resumes the loop" id="pauseBtn">Pause</button>
+		<br>
+		<button onclick="number = ExpantaNum(document.getElementById('set').value);" class="mainBtn blueBtn">Set Value</button>
+		<input type="text" id="set" placeholder="Set">
+		<br>
+		<button onclick="number = number.add(ExpantaNum(document.getElementById('add').value));" class="mainBtn blueBtn">Add </button>
+		<input type="text" id="add" placeholder="Adder">
+		<br>
+		<button onclick="number = number.sub(ExpantaNum(document.getElementById('subtract').value));" class="mainBtn blueBtn">Subtract </button>
+		<input type="text" id="subtract" placeholder="Subtractor">
+		<br>
+		<button onclick="number = number.mul(ExpantaNum(document.getElementById('multiply').value));" class="mainBtn blueBtn">Multiply by </button>
+		<input type="text" id="multiply" placeholder="Multiplier">
+		<br>
+		<button onclick="number = number.div(ExpantaNum(document.getElementById('divide').value));" class="mainBtn blueBtn">Divide by </button>
+		<input type="text" id="divide" placeholder="Divisor">
+		<h2>Repeated (50/s)</h2>
+		<button onclick="hyper6 = document.getElementById('hyper6').value;" class="mainBtn blueBtn">Set hexation</button>
+		<input type="text" id="hyper6" placeholder="Hexation ^^^^">
+		<br>
+		<button onclick="hyper5 = document.getElementById('hyper5').value;" class="mainBtn blueBtn">Set pentation</button>
+		<input type="text" id="hyper5" placeholder="Pentation ^^^">
+		<br>
+		<button onclick="hyper4 = document.getElementById('hyper4').value;" class="mainBtn blueBtn">Set tetration</button>
+		<input type="text" id="hyper4" placeholder="Tetration ^^">
+		<br>
+		<button onclick="hyper3 = document.getElementById('hyper3').value;" class="mainBtn blueBtn">Set exponent</button>
+		<input type="text" id="hyper3" placeholder="Exponent ^">
+		<br>
+		<button onclick="hyper2 = document.getElementById('hyper2').value;" class="mainBtn blueBtn">Set multiplier</button>
+		<input type="text" id="hyper2" placeholder="Multiplier *">
+		<br>
+		<button onclick="hyper1 = document.getElementById('hyper1').value;" class="mainBtn blueBtn">Set adder</button>
+		<input type="text" id="hyper1" placeholder="Adder +">
+		<br>
+		<p id="number" class="text">0.00</p>
+		<p id="perSec" style="display:none;">0/s</p>
+		<p id="exponential" style="font-size:18px; display:none;">1e2</p>
+		<p id="pause" style="display:none;">1.00 s</p>
+		<button onclick="showOptions();" class="yellowBtn">Show Options</button>
+	</div>
+
+	<div id="options" style="display:none;">
+		<button onclick="hideOptions();" class="yellowBtn">Hide Options</button>
+
+		<h1>Notations</h1>
+		<button onclick="notation = 'word';" class="yellowBtn">Word Notation (Limit of e33003)</button>
+		<br>
+		<button onclick="notation = 'scientific';" class="yellowBtn">Scientific Notation</button>
+        <br>
+		<button onclick="notation = 'standard';" class="yellowBtn">Standard Notation</button>
+		<br>
+		<br>
+        <span>Digit Count</span>
+        <input type="range" min="0" max="10" value="2" id="digitCount">
+		<br>
+		<input type="checkbox" id="saveCheckbox" onclick="checkForSave();" checked>
+		<span>Save</span>
+		<h1>Themes</h1>
+		<span style="color:blue;">Coming someday</span>
+	</div>
+
+	<script src="ExpantaNum.js"></script>
+
+	<script type="text/javascript">
+		if (localStorage.getItem("number" === null)) {
+			fixStorage();
+		}
+		if (localStorage.getItem("shouldSave") == "false") {
+			document.getElementById("saveCheckbox").checked = false;
+		}
+		var number = ExpantaNum(localStorage.getItem("number"));
+		var period = 1000;
+		/* if (localStorage.getItem("hyper1") === "") {
+			var hyper1 = "";
+			var hyper2 = "";
+			var hyper3 = "";
+			var hyper4 = "";
+			var hyper5 = "";
+			var hyper6 = "";
+		} else {
+			var hyper1 = ExpantaNum(localStorage.getItem("hyper1"));
+			var hyper2 = ExpantaNum(localStorage.getItem("hyper2"));
+			var hyper3 = ExpantaNum(localStorage.getItem("hyper3"));
+			var hyper4 = ExpantaNum(localStorage.getItem("hyper4"));
+			var hyper5 = ExpantaNum(localStorage.getItem("hyper5"));
+			var hyper6 = ExpantaNum(localStorage.getItem("hyper6"));
+		} */
+		var hyper1 = "";
+		var hyper2 = "";
+		var hyper3 = "";
+		var hyper4 = "";
+		var hyper5 = "";
+		var hyper6 = "";
+		var notation = "standard";
+        var digitCount = 2;
+		var paused = false;
+		var shouldSave = false;
+		var numberText = document.getElementById("number");
+		var exponentialText = document.getElementById("exponential");
+		var perSecText = document.getElementById("perSec");
+		var numberName = ["","","",""];
+        var numberNames = [
+            ["","milli","billi","trilli","quadrilli","quintilli","sextilli","septilli","octilli","nonilli","decilli"],
+            ["novem","","un","duo","tre","quattuor","quin","sex","septen","octo"],
+            ["","decillion","vigintillion","trigintillion","quadragintillion","quinquagintillion","sexagintillion","septuagintillion","octogintillion","nonagintillion"],
+            ["","centillion","ducentillion","trucentillion","quadringentillion","quingentillion","sescentillion","septingentillion","octingentillion","nongentillion"],
+            ["","deci","viginti","triginta","quadraginta","quinquaginta","sexaginta","septuaginta","octoginta","nonaginta"],
+            ["K","million","billion","trillion","quadrillion","quintillion","sextillion","septillion","octillion","nonillion"]
+        ];
+		function fixStorage() {
+			localStorage.setItem("number", "0");
+			localStorage.setItem("hyper1", "");
+			localStorage.setItem("hyper2", "");
+			localStorage.setItem("hyper3", "");
+			localStorage.setItem("hyper4", "");
+			localStorage.setItem("hyper5", "");
+			localStorage.setItem("hyper6", "");
+		}
+		function checkForSave() {
+			shouldSave = document.getElementById("saveCheckbox").checked;
+			if (!shouldSave) {
+				clearInterval(saveFunction);
+				localStorage.removeItem("number");
+			} else {
+				saveFunction = setInterval(save, 500);
+			}
+		}
+		function run() {
+			if (!hyper6 == '' || !hyper6 == undefined) {
+				number = ExpantaNum.arrow(number, 6, hyper6);
+			}
+			if (!hyper5 == '' || !hyper5 == undefined) {
+				number = number.pent(hyper5);
+			}
+			if (!hyper4 == '' || !hyper4 == undefined) {
+				number = number.tetr(hyper4);
+			}
+			if (!hyper3 == '' || !hyper3 == undefined) {
+				number = number.pow(hyper3);
+			}
+			if (!hyper2 == '' || !hyper2 == undefined) {
+				number = number.mul(hyper2);
+			}
+			if (!hyper1 == '' || !hyper1 == undefined) {
+				number = number.add(hyper1);
+			}
+			period /= 1.008;
+            digitCount = Number(document.getElementById("digitCount").value);
+			updateNumberName();
+			setTexts();
+		}
+		function pause() {
+			if (paused) {
+				paused = false;
+				document.getElementById("pauseBtn").className = "redBtn";
+				document.getElementById("pauseBtn").innerText = "Pause";
+				loop = setInterval(run, 20);
+			} else {
+				document.getElementById("pauseBtn").className = "greenBtn";
+				document.getElementById("pauseBtn").innerText = "Resume";
+				paused = true;
+				clearInterval(loop);
+			}
+		}
+		function updateNumberName() {
+			numberName[0] = numberNames[0][((number.abs().log10().sub(3)).div(3000)).floor().toNumber()];
+				if (number.abs().log10().mod(3000).greaterThanOrEqualTo(33)) {
+					numberName[1] = numberNames[1][((number.abs().log10().div(3)).floor()).mod(10).toNumber()];
+				} else {
+					if (number.abs().log10().greaterThanOrEqualTo(3003)) {
+						numberName[1] = numberNames[5][((number.abs().log10().div(3)).floor()).mod(10).toNumber()];
+					} else {
+						numberName[1] = numberNames[5][((number.abs().log10().div(3)).floor().sub(1)).mod(10).toNumber()];
+					}
+				}
+				if (number.abs().log10().mod(3000).greaterThanOrEqualTo(303)) {
+					numberName[2] = numberNames[4][(((number.abs().log10().sub(3)).div(30)).floor()).mod(10).toNumber()];
+				} else {
+					numberName[2] = numberNames[2][(((number.abs().log10().sub(3)).div(30)).floor()).mod(10).toNumber()];
+				}
+				numberName[3] = numberNames[3][(((number.abs().log10().sub(3)).div(300)).floor()).mod(10).toNumber()];
+				numberName[0] = numberNames[0][((number.abs().log10().sub(3)).div(3000)).floor().toNumber()];
+				if (number.abs().log10().mod(3000).greaterThanOrEqualTo(33)) {
+					numberName[1] = numberNames[1][((number.abs().log10().div(3)).floor()).mod(10).toNumber()];
+				} else {
+					if (number.abs().log10().greaterThanOrEqualTo(3003)) {
+						numberName[1] = numberNames[5][((number.abs().log10().div(3)).floor()).mod(10).toNumber()];
+					} else {
+						numberName[1] = numberNames[5][((number.abs().log10().div(3)).floor().sub(1)).mod(10).toNumber()];
+					}
+				}
+				if (number.abs().log10().mod(3000).greaterThanOrEqualTo(303)) {
+					numberName[2] = numberNames[4][(((number.abs().log10().sub(3)).div(30)).floor()).mod(10).toNumber()];
+				} else {
+					numberName[2] = numberNames[2][(((number.abs().log10().sub(3)).div(30)).floor()).mod(10).toNumber()];
+				}
+				numberName[3] = numberNames[3][(((number.abs().log10().sub(3)).div(300)).floor()).mod(10).toNumber()];
+			}
+		function setTexts() {
+			// setNumberText();
+			exponentialText.innerHTML = number.toExponential(3);
+			perSecText.innerHTML = (0.1 * number).toFixed(5) + "/s";
+			if (notation === "word") {
+				if (number.greaterThanOrEqualTo("1e33003")) {
+					document.getElementById("number").innerText = number.toExponential(digitCount);
+				} else if (number.abs().log10().floor().greaterThanOrEqualTo(3003) && (number.abs().log10().floor().sub(3)).mod(3000).greaterThanOrEqualTo(0) && (number.abs().log10().floor().sub(3)).mod(3000).lessThanOrEqualTo(2)) {
+					document.getElementById("number").innerText = ExpantaNum(10).pow((number.abs().log10()).sub(number.abs().log10().floor())).mul(ExpantaNum(10).pow(number.abs().log10().floor().mod(3))).mul(number.div(number.abs())).toFixed(digitCount) + " " + numberName[0] + "llion";
+				} else if (number.abs().log10().floor().greaterThanOrEqualTo(3)) {
+					document.getElementById("number").innerText = ExpantaNum(10).pow((number.abs().log10()).sub(number.abs().log10().floor())).mul(ExpantaNum(10).pow(number.abs().log10().floor().mod(3))).mul(number.div(number.abs())).toFixed(digitCount) + " " + numberName[0] + numberName[1] + numberName[2] + numberName[3];
+				} else if (number.greaterThanOrEqualTo(1)) {
+					document.getElementById("number").innerText = ExpantaNum(10).pow((number.abs().log10()).sub(number.abs().log10().floor())).mul(ExpantaNum(10).pow(number.abs().log10().floor().mod(3))).mul(number.div(number.abs())).toFixed(digitCount);
+				} else {
+					document.getElementById("number").innerText = number.toFixed(digitCount);
+				}
+			} else if (notation === "scientific") {
+				document.getElementById("number").innerText = number.toExponential(digitCount);
+			} else if (notation === "standard") {
+				if (number.abs().greaterThan("eeeeee9e15")) {
+					document.getElementById("number").innerHTML = number.toFixed(digitCount);
+				} else if (number.abs().greaterThan("eeeee9e15")) {
+					document.getElementById("number").innerHTML = "10<sup>10<sup>10<sup>10<sup>10<sup>10<sup>" + (number.log10().log10().log10().log10().log10().log10().mul(ExpantaNum(10).pow(digitCount)).round().div(ExpantaNum(10).pow(digitCount))).toString() + "</sup></sup></sup></sup></sup></sup>";
+				} else if (number.abs().greaterThan("eeee9e15")) {
+					document.getElementById("number").innerHTML = "10<sup>10<sup>10<sup>10<sup>10<sup>" + (number.log10().log10().log10().log10().log10().mul(ExpantaNum(10).pow(digitCount)).round().div(ExpantaNum(10).pow(digitCount))).toString() + "</sup></sup></sup></sup></sup>";
+				} else if (number.abs().greaterThan("eee9e15")) {
+					document.getElementById("number").innerHTML = "10<sup>10<sup>10<sup>10<sup>" + (number.log10().log10().log10().log10().mul(ExpantaNum(10).pow(digitCount)).round().div(ExpantaNum(10).pow(digitCount))).toString() + "</sup></sup></sup></sup>";
+				} else if (number.abs().greaterThan("ee9e15")) {
+					document.getElementById("number").innerHTML = "10<sup>10<sup>10<sup>" + (number.log10().log10().log10().mul(ExpantaNum(10).pow(digitCount)).round().div(ExpantaNum(10).pow(digitCount))).toString() + "</sup></sup></sup>";
+				} else if (number.abs().greaterThan("e9e15")) {
+					document.getElementById("number").innerHTML = "10<sup>10<sup>" + (number.log10().log10().mul(ExpantaNum(10).pow(digitCount)).round().div(ExpantaNum(10).pow(digitCount))).toString() + "</sup></sup>";
+				} else if (number.abs().greaterThan(9e15) || (number.abs().lessThan(0.000001) && number.abs().greaterThan(0))) {
+					document.getElementById("number").innerHTML = ExpantaNum(10).pow(number.log10().sub(number.log10().floor())).toFixed(digitCount) + " × 10<sup>" + number.log10().floor() + "</sup>";
+				} else {
+					document.getElementById("number").innerHTML = number.toFixed(digitCount);
+				}
+			}
+		}
+		function hideOptions() {
+			document.getElementById("options").style = "display:none;";
+			document.getElementById("main").style = "display:default;";
+		}
+		function showOptions() {
+			document.getElementById("main").style = "display:none;";
+			document.getElementById("options").style = "display:default;";
+		}
+		function save() {
+			localStorage.setItem("number", number);
+			localStorage.setItem("hyper1", hyper1);
+			localStorage.setItem("hyper2", hyper2);
+			localStorage.setItem("hyper3", hyper3);
+			localStorage.setItem("hyper4", hyper4);
+			localStorage.setItem("hyper5", hyper5);
+			localStorage.setItem("hyper6", hyper6);
+		}
+		function save2() {
+			localStorage.setItem("shouldSave", shouldSave);
+		}
+		loop = setInterval(run, 20);
+		saveFunction = setInterval(save, 500);
+		save2Function = setInterval(save2, 500);
+	</script>
+</body>
+</html>
+<!-- :) -->
