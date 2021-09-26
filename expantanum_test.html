@@ -271,19 +271,19 @@
 				if (number.abs().greaterThan("eeeeee9e15")) {
 					document.getElementById("number").innerHTML = number.toFixed(digitCount);
 				} else if (number.abs().greaterThan("eeeee9e15")) {
-					document.getElementById("number").innerHTML = "10<sup>10<sup>10<sup>10<sup>10<sup>10<sup>" + (number.log10().log10().log10().log10().log10().log10().mul(ExpantaNum(10).pow(digitCount)).floor().div(ExpantaNum(10).pow(digitCount))).toString() + "</sup></sup></sup></sup></sup></sup>";
+					document.getElementById("number").innerHTML = "10<sup>10<sup>10<sup>10<sup>10<sup>10<sup>" + (number.log10().log10().log10().log10().log10().log10().mul(ExpantaNum(10).pow(digitCount)).round().div(ExpantaNum(10).pow(digitCount))).toString() + "</sup></sup></sup></sup></sup></sup>";
 				} else if (number.abs().greaterThan("eeee9e15")) {
-					document.getElementById("number").innerHTML = "10<sup>10<sup>10<sup>10<sup>10<sup>" + (number.log10().log10().log10().log10().log10().mul(ExpantaNum(10).pow(digitCount)).floor().div(ExpantaNum(10).pow(digitCount))).toString() + "</sup></sup></sup></sup></sup>";
+					document.getElementById("number").innerHTML = "10<sup>10<sup>10<sup>10<sup>10<sup>" + (number.log10().log10().log10().log10().log10().mul(ExpantaNum(10).pow(digitCount)).round().div(ExpantaNum(10).pow(digitCount))).toString() + "</sup></sup></sup></sup></sup>";
 				} else if (number.abs().greaterThan("eee9e15")) {
-					document.getElementById("number").innerHTML = "10<sup>10<sup>10<sup>10<sup>" + (number.log10().log10().log10().log10().mul(ExpantaNum(10).pow(digitCount)).floor().div(ExpantaNum(10).pow(digitCount))).toString() + "</sup></sup></sup></sup>";
+					document.getElementById("number").innerHTML = "10<sup>10<sup>10<sup>10<sup>" + (number.log10().log10().log10().log10().mul(ExpantaNum(10).pow(digitCount)).round().div(ExpantaNum(10).pow(digitCount))).toString() + "</sup></sup></sup></sup>";
 				} else if (number.abs().greaterThan("ee9e15")) {
-					document.getElementById("number").innerHTML = "10<sup>10<sup>10<sup>" + (number.log10().log10().log10().mul(ExpantaNum(10).pow(digitCount)).floor().div(ExpantaNum(10).pow(digitCount))).toString() + "</sup></sup></sup>";
+					document.getElementById("number").innerHTML = "10<sup>10<sup>10<sup>" + (number.log10().log10().log10().mul(ExpantaNum(10).pow(digitCount)).round().div(ExpantaNum(10).pow(digitCount))).toString() + "</sup></sup></sup>";
 				} else if (number.abs().greaterThan("e9e15")) {
-					document.getElementById("number").innerHTML = "10<sup>10<sup>" + (number.log10().log10().mul(ExpantaNum(10).pow(digitCount)).floor().div(ExpantaNum(10).pow(digitCount))).toString() + "</sup></sup>";
+					document.getElementById("number").innerHTML = "10<sup>10<sup>" + (number.log10().log10().mul(ExpantaNum(10).pow(digitCount)).round().div(ExpantaNum(10).pow(digitCount))).toString() + "</sup></sup>";
 				} else if (number.abs().greaterThan(9e15) || (number.abs().lessThan(0.000001) && number.abs().greaterThan(0))) {
-					document.getElementById("number").innerHTML = ExpantaNum(10).pow(number.log10().sub(number.log10().floor())).toStringWithDecimalPlaces(digitCount) + " × 10<sup>" + number.log10().floor() + "</sup>";
+					document.getElementById("number").innerHTML = ExpantaNum(10).pow(number.log10().sub(number.log10().floor())).toFixed(digitCount) + " × 10<sup>" + number.log10().floor() + "</sup>";
 				} else {
-					document.getElementById("number").innerHTML = number.toStringWithDecimalPlaces(digitCount);
+					document.getElementById("number").innerHTML = number.toFixed(digitCount);
 				}
 			}
 		}
