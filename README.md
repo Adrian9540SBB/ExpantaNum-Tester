@@ -1,5 +1,5 @@
 # ExpantaNum-Tester
-A basic HTML document that tests the ExpantaNum.js file where you can find here: https://github.com/Naruyoko/ExpantaNum.js
+A basic HTML document that tests the ExpantaNum.js file where you can find [here](https://github.com/Naruyoko/ExpantaNum.js)
 
 
 # The Basics
