@@ -139,7 +139,11 @@
 		var hyper4 = "";
 		var hyper5 = "";
 		var hyper6 = "";
-		var notation = "standard";
+		if (localStorage.getItem("notation") === null) {
+			var notation = "standard";
+		} else {
+			var notation = localStorage.getItem("notation");
+		}
         var digitCount = 2;
 		var paused = false;
 		var shouldSave = false;
@@ -298,6 +302,7 @@
 			localStorage.setItem("hyper4", hyper4);
 			localStorage.setItem("hyper5", hyper5);
 			localStorage.setItem("hyper6", hyper6);
+			localStorage.setItem("notation", notation);
 		}
 		function save2() {
 			localStorage.setItem("shouldSave", shouldSave);
