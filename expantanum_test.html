@@ -63,22 +63,22 @@
 		<button onclick="number = number.div(ExpantaNum(document.getElementById('divide').value));" class="mainBtn blueBtn">Divide by </button>
 		<input type="text" id="divide" placeholder="Divisor">
 		<h2>Repeated (50/s)</h2>
-		<button onclick="hyper6 = document.getElementById('hyper6').value;" class="mainBtn blueBtn">Set hexation</button>
+		<button onclick="hypers[5] = document.getElementById('hyper6').value;" class="mainBtn blueBtn">Set hexation</button>
 		<input type="text" id="hyper6" placeholder="Hexation ^^^^">
 		<br>
-		<button onclick="hyper5 = document.getElementById('hyper5').value;" class="mainBtn blueBtn">Set pentation</button>
+		<button onclick="hypers[4] = document.getElementById('hyper5').value;" class="mainBtn blueBtn">Set pentation</button>
 		<input type="text" id="hyper5" placeholder="Pentation ^^^">
 		<br>
-		<button onclick="hyper4 = document.getElementById('hyper4').value;" class="mainBtn blueBtn">Set tetration</button>
+		<button onclick="hypers[3] = document.getElementById('hyper4').value;" class="mainBtn blueBtn">Set tetration</button>
 		<input type="text" id="hyper4" placeholder="Tetration ^^">
 		<br>
-		<button onclick="hyper3 = document.getElementById('hyper3').value;" class="mainBtn blueBtn">Set exponent</button>
+		<button onclick="hypers[2] = document.getElementById('hyper3').value;" class="mainBtn blueBtn">Set exponent</button>
 		<input type="text" id="hyper3" placeholder="Exponent ^">
 		<br>
-		<button onclick="hyper2 = document.getElementById('hyper2').value;" class="mainBtn blueBtn">Set multiplier</button>
+		<button onclick="hypers[1] = document.getElementById('hyper2').value;" class="mainBtn blueBtn">Set multiplier</button>
 		<input type="text" id="hyper2" placeholder="Multiplier *">
 		<br>
-		<button onclick="hyper1 = document.getElementById('hyper1').value;" class="mainBtn blueBtn">Set adder</button>
+		<button onclick="hypers[0] = document.getElementById('hyper1').value;" class="mainBtn blueBtn">Set adder</button>
 		<input type="text" id="hyper1" placeholder="Adder +">
 		<br>
 		<p id="number" class="text">0.00</p>
@@ -101,7 +101,7 @@
     	<span>Digit Count</span>
     	<input type="range" min="0" max="10" value="2" id="digitCount">
 		<br>
-		<input type="checkbox" id="saveCheckbox" onclick="checkForSave();" checked>
+		<input type="checkbox" id="saveCheckbox" onclick="checkForSave();" checked="true">
 		<span>Save</span>
 		<h1>Themes</h1>
 		<span style="color:blue;">Coming someday</span>
@@ -118,27 +118,7 @@
 		}
 		var number = ExpantaNum(localStorage.getItem("number"));
 		var period = 1000;
-		/* if (localStorage.getItem("hyper1") === "") {
-			var hyper1 = "";
-			var hyper2 = "";
-			var hyper3 = "";
-			var hyper4 = "";
-			var hyper5 = "";
-			var hyper6 = "";
-		} else {
-			var hyper1 = ExpantaNum(localStorage.getItem("hyper1"));
-			var hyper2 = ExpantaNum(localStorage.getItem("hyper2"));
-			var hyper3 = ExpantaNum(localStorage.getItem("hyper3"));
-			var hyper4 = ExpantaNum(localStorage.getItem("hyper4"));
-			var hyper5 = ExpantaNum(localStorage.getItem("hyper5"));
-			var hyper6 = ExpantaNum(localStorage.getItem("hyper6"));
-		} */
-		var hyper1 = "";
-		var hyper2 = "";
-		var hyper3 = "";
-		var hyper4 = "";
-		var hyper5 = "";
-		var hyper6 = "";
+		var hypers = ["", "", "", "", "", ""];
 		if (localStorage.getItem("notation") === null) {
 			var notation = "standard";
 		} else {
@@ -178,23 +158,23 @@
 			}
 		}
 		function run() {
-			if (!hyper6 == '' || !hyper6 == undefined) {
-				number = ExpantaNum.arrow(number, 4, hyper6);
+			if (!hypers[5] == '' || !hypers[5] == undefined) {
+				number = ExpantaNum.arrow(number, 4, hypers[5]);
 			}
-			if (!hyper5 == '' || !hyper5 == undefined) {
-				number = number.pent(hyper5);
+			if (!hypers[4] == '' || !hypers[4] == undefined) {
+				number = number.pent(hypers[4]);
 			}
-			if (!hyper4 == '' || !hyper4 == undefined) {
-				number = number.tetr(hyper4);
+			if (!hypers[3] == '' || !hypers[3] == undefined) {
+				number = number.tetr(hypers[3]);
 			}
-			if (!hyper3 == '' || !hyper3 == undefined) {
-				number = number.pow(hyper3);
+			if (!hypers[2] == '' || !hypers[2] == undefined) {
+				number = number.pow(hypers[2]);
 			}
-			if (!hyper2 == '' || !hyper2 == undefined) {
-				number = number.mul(hyper2);
+			if (!hypers[1] == '' || !hypers[1] == undefined) {
+				number = number.mul(hypers[1]);
 			}
-			if (!hyper1 == '' || !hyper1 == undefined) {
-				number = number.add(hyper1);
+			if (!hypers[0] == '' || !hypers[0] == undefined) {
+				number = number.add(hypers[0]);
 			}
 			period /= 1.008;
             digitCount = Number(document.getElementById("digitCount").value);
@@ -249,9 +229,6 @@
 				numberName[3] = numberNames[3][(((number.abs().log10().sub(3)).div(300)).floor()).mod(10).toNumber()];
 			}
 		function setTexts() {
-			// setNumberText();
-			exponentialText.innerHTML = number.toExponential(3);
-			perSecText.innerHTML = (0.1 * number).toFixed(5) + "/s";
 			if (notation === "word") {
 				if (number.greaterThanOrEqualTo("1e33003")) {
 					document.getElementById("number").innerText = number.toExponential(digitCount);
@@ -296,12 +273,12 @@
 		}
 		function save() {
 			localStorage.setItem("number", number);
-			localStorage.setItem("hyper1", hyper1);
-			localStorage.setItem("hyper2", hyper2);
-			localStorage.setItem("hyper3", hyper3);
-			localStorage.setItem("hyper4", hyper4);
-			localStorage.setItem("hyper5", hyper5);
-			localStorage.setItem("hyper6", hyper6);
+			localStorage.setItem("hyper1", hypers[0]);
+			localStorage.setItem("hyper2", hypers[1]);
+			localStorage.setItem("hyper3", hypers[2]);
+			localStorage.setItem("hyper4", hypers[3]);
+			localStorage.setItem("hyper5", hypers[4]);
+			localStorage.setItem("hyper6", hypers[5]);
 			localStorage.setItem("notation", notation);
 		}
 		function save2() {
