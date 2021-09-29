@@ -21,9 +21,9 @@ Hexation = The current number hexated by this number (Hexation is represented by
 
 Word Notation: The number name. It might be written as 7.56 quadrillion (which equals 7,560,000,000,000). I only coded in numbers up to 10^33003 for three reasons: I was lazy, I was confusing myself with my own code, and I don't know how to write numbers that extreme and everything in between.
 
-Scientific Notation: Likely the most well-known one that's not standard, scientific notation is usually represented as a * 10^c or aE+c (where E represents 10^)
+Scientific Notation: Likely the most well-known one that's not standard, scientific notation is usually represented as a * 10^b or aE+b (where E represents 10^)
 
-Standard Notation: The one you see on your math tests. Exponents are written as a<sup>b<sup>c</sup></sup> and so on and other numbers are written in a basic way, such as 123456.78.
+Standard Notation: The one you see on your math tests. Exponents are written as a<sup>b<sup>c</sup></sup> and so on and other numbers are written in a basic way, such as 123,456.78.
 
 
 # Other Features
