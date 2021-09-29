@@ -82,9 +82,6 @@
 		<input type="text" id="hyper1" placeholder="Adder +">
 		<br>
 		<p id="number" class="text">0.00</p>
-		<p id="perSec" style="display:none;">0/s</p>
-		<p id="exponential" style="font-size:18px; display:none;">1e2</p>
-		<p id="pause" style="display:none;">1.00 s</p>
 		<button onclick="showOptions();" class="yellowBtn">Show Options</button>
 	</div>
 
@@ -117,7 +114,6 @@
 			document.getElementById("saveCheckbox").checked = false;
 		}
 		var number = ExpantaNum(localStorage.getItem("number"));
-		var period = 1000;
 		var hypers = ["", "", "", "", "", ""];
 		if (localStorage.getItem("notation") === null) {
 			var notation = "standard";
@@ -128,8 +124,6 @@
 		var paused = false;
 		var shouldSave = false;
 		var numberText = document.getElementById("number");
-		var exponentialText = document.getElementById("exponential");
-		var perSecText = document.getElementById("perSec");
 		var numberName = ["","","",""];
         var numberNames = [
             ["","milli","billi","trilli","quadrilli","quintilli","sextilli","septilli","octilli","nonilli","decilli"],
@@ -176,7 +170,6 @@
 			if (!hypers[0] == '' || !hypers[0] == undefined) {
 				number = number.add(hypers[0]);
 			}
-			period /= 1.008;
             digitCount = Number(document.getElementById("digitCount").value);
 			updateNumberName();
 			setTexts();
