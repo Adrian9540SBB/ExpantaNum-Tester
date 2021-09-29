@@ -252,7 +252,7 @@
 				} else if (number.abs().greaterThan(9e15) || (number.abs().lessThan(0.000001) && number.abs().greaterThan(0))) {
 					document.getElementById("number").innerHTML = ExpantaNum(10).pow(number.log10().sub(number.log10().floor())).toFixed(digitCount) + " × 10<sup>" + number.log10().floor() + "</sup>";
 				} else {
-					document.getElementById("number").innerHTML = number.toFixed(digitCount);
+					document.getElementById("number").innerHTML = number.toNumber().toLocaleString(undefined, {maximumFractionDigits: digitCount});
 				}
 			}
 		}
